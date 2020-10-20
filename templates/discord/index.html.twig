@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="assets/css/index.css">
+{% endblock %}
+
+{% block body %}
+	<table>
+		<thead>
+			<tr>
+				<th>Presence</th>
+				<th>Schedule</th>
+				<th>Names</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for presence in presences %}
+			<tr>
+				<td>{{ presence.date.format("y-m-d") }}</td>
+				{% for schedule in presence.schedules %}
+					<td>{{ schedule.start.format("H-i") }} - {{ schedule.end.format("H-i") }}</td>
+					<td>
+						{% for user in schedule.users %}
+							<span class="presence-names">
+								{{ user.name }}
+							</span>
+						{% endfor %}
+					</td>
+				{% endfor %}
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

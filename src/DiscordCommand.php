@@ -139,7 +139,6 @@ class DiscordCommand extends Command
 				$presence = new Presence();
 				$presence->setDate($now);
 			}
-
 			if (!count($this->schedules))
 			{
 				$this->logger->error("No schedule found!");
