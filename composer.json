@@ -38,8 +38,9 @@
         "symfony/yaml": "5.1.*",
         "team-reflex/discord-php": "^5.0",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
-    },
+        "twig/twig": "^2.12|^3.0",
+		"ext-json": "*"
+	},
     "require-dev": {
         "symfony/browser-kit": "^5.1",
         "symfony/css-selector": "^5.1",

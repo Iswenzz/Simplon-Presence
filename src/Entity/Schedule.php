@@ -20,12 +20,12 @@ class Schedule
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="time")
      */
     private $start;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="time")
      */
     private $end;
 

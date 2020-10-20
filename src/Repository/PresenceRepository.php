@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Presence;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +20,18 @@ class PresenceRepository extends ServiceEntityRepository
         parent::__construct($registry, Presence::class);
     }
 
-    // /**
-    //  * @return Presence[] Returns an array of Presence objects
-    //  */
-    /*
-    public function findByExampleField($value)
+	/**
+	 * Get a presence entity from a specific date.
+	 * @param string $date - A DateTime formated to "y-m-d".
+	 * @return Presence|null
+	 * @throws NonUniqueResultException
+	 */
+    public function findOneByDate(string $date): ?Presence
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder("s")
+            ->where("s.date = :val")
+            ->setParameter("val", "$date")
             ->getQuery()
-            ->getResult()
-        ;
+            ->getOneOrNullResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Presence
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Schedule;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +21,21 @@ class ScheduleRepository extends ServiceEntityRepository
         parent::__construct($registry, Schedule::class);
     }
 
-    // /**
-    //  * @return Schedule[] Returns an array of Schedule objects
-    //  */
-    /*
-    public function findByExampleField($value)
+	/**
+	 * Find a schedule by a time range.
+	 * @param DateTime $start - The schedule start time.
+	 * @param DateTime $end - The schedule end time.
+	 * @return Schedule|null
+	 * @throws NonUniqueResultException
+	 */
+    public function findOneByRange(DateTime $start, DateTime $end): ?Schedule
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder("s")
+            ->where("s.start = :start")
+            ->andWhere("s.end = :end")
+            ->setParameter("start", $start->format("H:i:s"))
+            ->setParameter("end", $end->format("H:i:s"))
             ->getQuery()
-            ->getResult()
-        ;
+            ->getOneOrNullResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Schedule
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
