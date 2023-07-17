@@ -1,3 +1,1 @@
 # Simplon-Presence
-
-![](https://camo.githubusercontent.com/7f3085dbc776fc9770c08c0ae298e487cc594d9f/68747470733a2f2f692e696d6775722e636f6d2f5846765261614f2e706e67)
